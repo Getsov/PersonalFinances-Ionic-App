@@ -1,26 +1,30 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { IntroGuard } from "./guards/intro.guard";
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: "menu",
+    loadChildren: () =>
+      import("./pages/menu/menu.module").then((m) => m.MenuPageModule),
+    canActivate: [IntroGuard],
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: "intro",
+    loadChildren: () =>
+      import("./pages/intro/intro.module").then((m) => m.IntroPageModule),
   },
   {
-    path: 'intro',
-    loadChildren: () => import('./pages/intro/intro.module').then( m => m.IntroPageModule)
+    path: "",
+    redirectTo: "menu/tracker",
+    pathMatch: "full",
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

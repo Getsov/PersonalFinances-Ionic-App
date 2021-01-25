@@ -1,9 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>intro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-slides pager="true" #slides>
+    <ion-slide>
+      <h1>Welcome to Personal Finances</h1>
+      The best way to track your expenses
+      <ion-button expand="button" color="light" (click)="next()">
+        Configure your App
+      </ion-button>
+    </ion-slide>
 
+    <ion-slide>
+      <h1>Setup Your App</h1>
+
+      <ion-list>
+        <ion-radio-group [(ngModel)]="currency">
+          <ion-list-header>Currency</ion-list-header>
+
+          <ion-item>
+            <ion-label>Euro</ion-label>
+            <ion-radio slot="start" value="eur"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Dollar</ion-label>
+            <ion-radio slot="start" value="usd"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Pound</ion-label>
+            <ion-radio slot="start" value="gbp"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-button expand="button" color="light" (click)="saveAndStart()">
+        Get Started
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
